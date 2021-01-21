@@ -11,7 +11,7 @@ ${interval}     1
 Valid Login
     [Setup]    open browser to home page
     search keyword    Michaels
-    number of results should be    10
+    number of results should above    9
     sleep    10
     [Teardown]   close browser
 
@@ -28,8 +28,10 @@ Search Keyword
     sleep    ${interval}
     click element    sb_form_go
 
-Number Of Results Should Be
+Number Of Results Should Above
     [Arguments]    ${num}
     wait until page contains element    b_results
     @{eles}    get webelements    css:li.b_algo
-    length should be    ${eles}    ${num}
+    ${len}    get length    ${eles}
+    should be true    ${len}>=${num}
+
